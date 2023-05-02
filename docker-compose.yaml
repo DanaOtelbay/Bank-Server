@@ -1,0 +1,22 @@
+services:
+  db:
+    ports:
+      - "5432:5432"
+    container_name: postgresql_container
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: Fck1275!
+      POSTGRES_USER: postgres
+
+  backend:
+    build: .
+    container_name: testapp_container
+    ports:
+      - "8087:8087"
+    environment:
+      db-url: jdbc:postgresql://db:5432/postgres
+      db-username: postgres
+      db-password: Fck1275!
+    depends_on:
+      - db

@@ -56,8 +56,8 @@ public class TransactionController {
     //dana
     @PostMapping( "/withdraw")
     public ResponseEntity<BalanceTransactionDTO> withdraw(@RequestBody BalanceTransactionDTO balanceTransactionDTO) {
-        BalanceTransactionDTO depositTransaction = transactionService.updateAccountBalance(balanceTransactionDTO, ACTION.WITHDRAW);
-        log.info("transaction deposit: {}", depositTransaction);
-        return new ResponseEntity<>(depositTransaction, HttpStatus.CREATED);
+        BalanceTransactionDTO withdrawTransaction = transactionService.updateAccountBalance(balanceTransactionDTO, ACTION.WITHDRAW);
+        log.info("transaction withdraw: {}", withdrawTransaction);
+        return new ResponseEntity<>(withdrawTransaction, HttpStatus.CREATED);
     }
 }
