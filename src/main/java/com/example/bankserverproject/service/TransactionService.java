@@ -112,11 +112,7 @@ public class TransactionService {
 
         if (senderAccountOptional.isPresent() && action == ACTION.DEPOSIT){
             Account senderAccount = senderAccountOptional.get();
-//            System.out.println(senderAccount);
-            // Update sender account balances
             senderAccount.setCurrentBalance(senderAccount.getCurrentBalance().add(amount));
-            System.out.println("Account Current Balance after Deposit" + senderAccount.getCurrentBalance());
-            // Save updated account to the database
             accountRepository.save(senderAccount);
 
             // Create and save transaction to the database
@@ -131,7 +127,7 @@ public class TransactionService {
 //            System.out.println(senderAccount);
             // Update sender account balances
             if (senderAccount.getCurrentBalance().compareTo(amount) < 0) {
-                throw new IllegalArgumentException("Insufficient balance in sender account");
+                throw new IllegalArgumentException("Insufficient balance in sender account") 
             }
             senderAccount.setCurrentBalance(senderAccount.getCurrentBalance().subtract(amount));
             System.out.println("Account Current Balance after Withdraw" + senderAccount.getCurrentBalance());
